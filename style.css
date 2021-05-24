@@ -1,3 +1,96 @@
-h1, h2 {
-  font-family: Lato;
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+:root {
+  --column-1: #a2622d;
+  --column-2: #1b6161;
+  --column-3: #248224;
+  --column-4: #a22d22;
+}
+
+body {
+  margin: 0;
+  background: url("./trees.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  font-family: Quicksand, sans-serif;
+  overflow-y: hidden;
+}
+
+h1 {
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px black;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 3rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.drag-container {
+  margin: 20px;
+}
+
+.drag-list {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Columns */
+.drag-column {
+  flex: 1;
+  margin: 0 10px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  overflow-x: hidden;
+}
+
+.backlog-column .header {
+  background-color: var(--column-1);
+}
+
+.progress-column .header {
+  background-color: var(--column-2);
+}
+
+.complete-column .header {
+  background-color: var(--column-3);
+}
+
+.on-hold-column .header {
+  background-color: var(--column-4);
+}
+
+.custom-scroll {
+  overflow-y: auto;
+  max-height: 52vh;
+}
+
+
+.custom-scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-right: 5px;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.8);
 }
