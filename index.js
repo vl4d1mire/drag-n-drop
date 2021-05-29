@@ -2,6 +2,7 @@ const backlogListEl = document.getElementById('backlog-list')
 const progressListEl = document.getElementById('progress-list')
 const completeListEl = document.getElementById('complete-list')
 const onHoldListEl = document.getElementById('on-hold-list')
+const listColumns = document.querySelectorAll('.drag-item-list')
 
 let backlogListArray = []
 let completeListArray = []
@@ -10,6 +11,11 @@ let onHoldListArray = []
 let listArray = []
 
 let updateOnLoad = false
+
+// Drag functionality
+let draggedItem
+let currentColumn
+let dragging = false
 
 function getSavedLocalStorage() {
     if (localStorage.getItem('backlogItems')) {
@@ -60,8 +66,37 @@ function updateDom() {
 function createEl(columnEl, column, item, index) {
     const listEl = document.createElement('li')
     listEl.classList.add('drag-item')
+    listEl.id = index
     listEl.textContent = item
+    listEl.draggable = true
+    listEl.setAttribute('ondragstart', 'drag(event)')
     columnEl.appendChild(listEl)
+}
+
+// When Item starts Dragging
+function drag(e) {
+    draggedItem = e.target
+    dragging = true
+}
+
+// Column allows Item to drop
+function allowDrop(e) {
+    e.preventDefault()
+}
+
+// Dropping Item to Column
+function drop(e) {
+    e.preventDefault()
+    listColumns.forEach(column => column.classList.remove('over'))
+    const parent = listColumns[currentColumn]
+    parent.appendChild(draggedItem)
+    dragging = false
+}
+
+// When Item enter Column area
+function dragEnter(column) {
+    listColumns[column].classList.add('over')
+    currentColumn = listColumns[column]
 }
 
 updateDom()
