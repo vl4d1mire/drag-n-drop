@@ -39,6 +39,10 @@ function updateDateLocalStorage() {
     })
 }
 
+function filterArray(arr) {
+    return arr.filter(i => i !== null)
+}
+
 function updateDom() {
     if (!updateOnLoad) {
         getSavedLocalStorage()
@@ -47,18 +51,22 @@ function updateDom() {
     backlogListArray.forEach((backlogItem, index) => {
         createEl(backlogListEl, 0, backlogItem, index)
     })
+    backlogListArray = filterArray(backlogListArray)
     progressListEl.textContent = ''
     progressListArray.forEach((progressItem, index) => {
         createEl(progressListEl, 1, progressItem, index)
     })
+    progressListArray = filterArray(progressListArray)
     completeListEl.textContent = ''
     completeListArray.forEach((completeItem, index) => {
         createEl(completeListEl, 2, completeItem, index)
     })
+    completeListArray = filterArray(completeListArray)
     onHoldListEl.textContent = ''
     onHoldListArray.forEach((onHoldItem, index) => {
         createEl(onHoldListEl, 3, onHoldItem, index)
     })
+    onHoldListArray = filterArray(onHoldListArray)
     updateOnLoad = true
     updateDateLocalStorage()
 }
@@ -96,7 +104,7 @@ function drop(e) {
 // When Item enter Column area
 function dragEnter(column) {
     listColumns[column].classList.add('over')
-    currentColumn = listColumns[column]
+    currentColumn = column
 }
 
 updateDom()
