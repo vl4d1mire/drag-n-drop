@@ -1,15 +1,18 @@
+// Item Lists
 const backlogListEl = document.getElementById('backlog-list')
 const progressListEl = document.getElementById('progress-list')
 const completeListEl = document.getElementById('complete-list')
 const onHoldListEl = document.getElementById('on-hold-list')
 const listColumns = document.querySelectorAll('.drag-item-list')
 
+// Initialize Arrays
 let backlogListArray = []
 let completeListArray = []
 let progressListArray = []
 let onHoldListArray = []
 let listArray = []
 
+// Items
 let updateOnLoad = false
 
 // Drag functionality
@@ -17,6 +20,7 @@ let draggedItem
 let currentColumn
 let dragging = false
 
+// Get Arrays from LocalStorage if available, set default values if not
 function getSavedLocalStorage() {
     if (localStorage.getItem('backlogItems')) {
         backlogListArray = JSON.parse(localStorage.backlogItems)
@@ -31,6 +35,7 @@ function getSavedLocalStorage() {
     }
 }
 
+//Set LocalStorage Arrays
 function updateDateLocalStorage() {
     listArray = [backlogListArray, progressListArray, completeListArray, onHoldListArray]
     const arrayNames = ['backlog', 'progress', 'complete', 'onHold']
@@ -39,10 +44,12 @@ function updateDateLocalStorage() {
     })
 }
 
+// Filter Array for each list item
 function filterArray(arr) {
     return arr.filter(i => i !== null)
 }
 
+// Update Columns in Dom - Reset HTML, filter Array, Update LocalStorage
 function updateDom() {
     if (!updateOnLoad) {
         getSavedLocalStorage()
@@ -71,6 +78,16 @@ function updateDom() {
     updateDateLocalStorage()
 }
 
+// Allow Arrays to reflect Drag and Drop items
+function rebuildArrays() {
+    backlogListArray = Array.from(backlogListEl.children).map(item => item.textContent)
+    progressListArray = Array.from(progressListEl.children).map(item => item.textContent)
+    completeListArray = Array.from(completeListEl.children).map(item => item.textContent)
+    onHoldListArray = Array.from(onHoldListEl.children).map(item => item.textContent)
+    updateDom()
+}
+
+// Create DOM Elements for each list item
 function createEl(columnEl, column, item, index) {
     const listEl = document.createElement('li')
     listEl.classList.add('drag-item')
@@ -97,8 +114,9 @@ function drop(e) {
     e.preventDefault()
     listColumns.forEach(column => column.classList.remove('over'))
     const parent = listColumns[currentColumn]
-    parent.appendChild(draggedItem)
     dragging = false
+    parent.appendChild(draggedItem)
+    rebuildArrays()
 }
 
 // When Item enter Column area
@@ -107,4 +125,5 @@ function dragEnter(column) {
     currentColumn = column
 }
 
+// On Load
 updateDom()
