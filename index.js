@@ -100,6 +100,9 @@ function createEl(columnEl, column, item, index) {
     listEl.textContent = item
     listEl.draggable = true
     listEl.setAttribute('ondragstart', 'drag(event)')
+    listEl.contentEditable = true
+    listEl.id = index
+    listEl.setAttribute('onfocusout', `updateItem(${column}, ${index})`)
     columnEl.appendChild(listEl)
 }
 
@@ -145,11 +148,23 @@ function hideInputBlock(column) {
     addItemColumn(column)
 }
 
-// Add Item Text in Column
+// Add Item Text in Column, Reset TextBlock
 function addItemColumn(column) {
     const itemText = addItems[column].textContent
     listArray[column].push(itemText)
     addItems[column].textContent = ''
+    updateDom()
+}
+
+// Update Item - Delete  if necessary or update Array value
+function updateItem(column, id) {
+    let selectedArray = listArray[column]
+    const selectedColumn = listColumns[column].children
+    if (!selectedColumn[id].textContent) {
+        delete selectedArray[id]
+    } else {
+        selectedArray[id] = selectedColumn[id].textContent
+    }
     updateDom()
 }
 
