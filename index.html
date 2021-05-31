@@ -22,17 +22,17 @@
                     <ul class="drag-item-list" id="backlog-list" ondrop="drop(event)" ondragenter="dragEnter(0)" ondragover="allowDrop(event)"></ul>
                 </div>
                 <!-- Add Button Group  -->
-                <div class="add-button-group">
-                    <div class="add-btn">
+                <div class="add-btn-group">
+                    <div class="add-btn" onclick="showInputBlock(0)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                </div>
-                <div class="add-button solid">
-                    <span>Save Item</span>
+                    <div class="add-btn solid" onclick="hideInputBlock(0)">
+                        <span>Save Item</span>
+                    </div>
                 </div>
                 <div class="add-container">
-                    <div class="add-item"></div>
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
             <!-- ProgressColumn -->
@@ -45,17 +45,17 @@
                     <ul class="drag-item-list" id="progress-list" ondrop="drop(event)" ondragenter="dragEnter(1)" ondragover="allowDrop(event)"></ul>
                 </div>
                 <!-- Add Button Group  -->
-                <div class="add-button-group">
-                    <div class="add-btn">
+                <div class="add-btn-group">
+                    <div class="add-btn" onclick="showInputBlock(1)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                </div>
-                <div class="add-button solid">
-                    <span>Save Item</span>
+                    <div class="add-btn solid" onclick="hideInputBlock(1)">
+                        <span>Save Item</span>
+                    </div>
                 </div>
                 <div class="add-container">
-                    <div class="add-item"></div>
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
             <!-- Complete Column  -->
@@ -68,17 +68,17 @@
                     <ul class="drag-item-list" id="complete-list" ondrop="drop(event)" ondragenter="dragEnter(2)" ondragover="allowDrop(event)"></ul>
                 </div>
                 <!-- Add Button Group  -->
-                <div class="add-button-group">
-                    <div class="add-btn">
+                <div class="add-btn-group">
+                    <div class="add-btn" onclick="showInputBlock(2)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                </div>
-                <div class="add-button solid">
-                    <span>Save Item</span>
+                    <div class="add-btn solid" onclick="hideInputBlock(2)">
+                        <span>Save Item</span>
+                    </div>
                 </div>
                 <div class="add-container">
-                    <div class="add-item"></div>
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
             <!-- On Hold Column  -->
@@ -91,17 +91,17 @@
                     <ul class="drag-item-list" id="on-hold-list" ondrop="drop(event)" ondragenter="dragEnter(3)" ondragover="allowDrop(event)"></ul>
                 </div>
                 <!-- Add Button Group  -->
-                <div class="add-button-group">
-                    <div class="add-btn">
+                <div class="add-btn-group">
+                    <div class="add-btn" onclick="showInputBlock(3)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                </div>
-                <div class="add-button solid">
-                    <span>Save Item</span>
+                    <div class="add-btn solid" onclick="hideInputBlock(3)">
+                        <span>Save Item</span>
+                    </div>
                 </div>
                 <div class="add-container">
-                    <div class="add-item"></div>
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
         </ul>

@@ -145,7 +145,7 @@ ul {
 }
 
 /* Add Button Group*/
-.add-button-group {
+.add-btn-group {
   display: flex;
   justify-content: space-between;
 }
@@ -162,17 +162,18 @@ ul {
   user-select: none;
 }
 
-.add-button:hover {
+.add-btn:hover {
   background-color: rgba(255, 255, 255, .9);
   color: black;
 }
 
-.add-button:active {
+.add-btn:active {
   transform: scale(0.97);
 }
 
 .solid {
   display: none;
+
 }
 
 .solid:hover {

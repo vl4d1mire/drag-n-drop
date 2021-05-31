@@ -1,3 +1,8 @@
+const addBtns = document.querySelectorAll('.add-btn:not(.solid)')
+const saveBtns = document.querySelectorAll('.solid')
+const addContainer = document.querySelectorAll('.add-container')
+const addItems = document.querySelectorAll('.add-item')
+
 // Item Lists
 const backlogListEl = document.getElementById('backlog-list')
 const progressListEl = document.getElementById('progress-list')
@@ -123,6 +128,29 @@ function drop(e) {
 function dragEnter(column) {
     listColumns[column].classList.add('over')
     currentColumn = column
+}
+
+// Show Add Item Input Block
+function showInputBlock(column) {
+    addBtns[column].style.visibility = 'hidden'
+    saveBtns[column].style.display = 'flex'
+    addContainer[column].style.display = 'flex'
+}
+
+// Hide Item Input Block
+function hideInputBlock(column) {
+    addBtns[column].style.visibility = 'visible'
+    saveBtns[column].style.display = 'none'
+    addContainer[column].style.display = 'none'
+    addItemColumn(column)
+}
+
+// Add Item Text in Column
+function addItemColumn(column) {
+    const itemText = addItems[column].textContent
+    listArray[column].push(itemText)
+    addItems[column].textContent = ''
+    updateDom()
 }
 
 // On Load
