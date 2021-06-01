@@ -122,8 +122,8 @@ function drop(e) {
     e.preventDefault()
     listColumns.forEach(column => column.classList.remove('over'))
     const parent = listColumns[currentColumn]
-    dragging = false
     parent.appendChild(draggedItem)
+    dragging = false
     rebuildArrays()
 }
 
@@ -160,12 +160,14 @@ function addItemColumn(column) {
 function updateItem(column, id) {
     let selectedArray = listArray[column]
     const selectedColumn = listColumns[column].children
-    if (!selectedColumn[id].textContent) {
-        delete selectedArray[id]
-    } else {
-        selectedArray[id] = selectedColumn[id].textContent
+    if (!dragging) {
+        if (!selectedColumn[id].textContent) {
+            delete selectedArray[id]
+        } else {
+            selectedArray[id] = selectedColumn[id].textContent
+        }
+        updateDom()
     }
-    updateDom()
 }
 
 // On Load
